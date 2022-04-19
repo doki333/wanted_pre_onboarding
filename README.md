@@ -8,7 +8,7 @@
 
 ### 3. Slider   
    　 Input 중에서 text와 range 타입을 이용해 구현해봤습니다. useState Hook을 이용하여 'num'이라는 값을 range와 text input의 value로 설정하여 input의 값을 서로 연결해주었습니다. Text input은 value의 값만을 보여주기 위해 readOnly 속성을 넣어주었습니다. Unordered List 안에 button들을 넣고, value값을 설정하는 onClick 이벤트를 구현했습니다. Text Input에 label을 연결시키고, 위치를 조절하여 text input안에 '%'를 표시하였습니다.   
-     range 위에 있는 원들을 구현하기 위해 각 button들에 가상요소 before를 만들고 위치를 조정해주었습니다. 처음에 원들의 배경색을 바꾸기 위해 color라는 props를 주고자 했습니다. 하지만 color라는 props에 boolean값을 줄수가 없었고, string으로 바꾸니 조건식이 길어졌습니다. (예를 들면 props.color === 'true') 그래서 0이 falsy값이라는 것을 활용하여 현재의 range의 value가 button의 값보다 클 경우 1, 아닐 경우 0 값을 주어 조건식의 길이도 줄이고 조건에 따라 가상요소의 배경색을 바꾸는 이벤트도 구현할 수 있었습니다. Tab.js의 경우와 마찬가지로, props의 값을 읽기 위해 styled-components를 사용하였습니다.   
+     　range 위에 있는 원들을 구현하기 위해 각 button들에 가상요소 before를 만들고 위치를 조정해주었습니다. 처음에 원들의 배경색을 바꾸기 위해 color라는 props를 주고자 했습니다. 하지만 color라는 props에 boolean값을 줄수가 없었고, string으로 바꾸니 조건식이 길어졌습니다. (예를 들면 props.color === 'true') 그래서 0이 falsy값이라는 것을 활용하여 현재의 range의 value가 button의 값보다 클 경우 1, 아닐 경우 0 값을 주어 조건식의 길이도 줄이고 조건에 따라 가상요소의 배경색을 바꾸는 이벤트도 구현할 수 있었습니다. Tab.js의 경우와 마찬가지로, props의 값을 읽기 위해 styled-components를 사용하였습니다.   
    　기능들을 구현한 후에 range input의 스타일을 커스텀하는 것이 익숙하지 않아 어려움을 겪었습니다. 하지만 구글링을 통해 range input의 기존 스타일을 appearance: none;을 통해 초기화 하고 -webkit-slider-runnable-track와 -webkit-slider-thumb 속성을 통해 스타일을 줄 수 있다는 것을 알게 되었습니다.
    range바를 조절함에 따라 배경색이 바뀌는 것을 구현하기 위해 linear-gradient를 사용하였습니다. value값을 불러와서 원하는 색상을 0%에서 value의 퍼센트까지 나타나도록 하여 원하는 스타일을 구현할 수 있었습니다.
 
