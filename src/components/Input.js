@@ -58,8 +58,8 @@ const EmailInner = styled(InputInner)`
     visibility: hidden;
     color: red;
     margin: 0;
-    font-size: 0.8rem;
-    transform: translate(-145px, -24px);
+    font-size: 0.9rem;
+    transform: translate(-140px, -24px);
     position: relative;
   }
 `;
@@ -76,27 +76,24 @@ const PasswordInner = styled(InputInner)`
 `;
 
 function Input() {
-  const warningMsg = document.getElementById("warningMsg");
   const [isText, setIsText] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const onChange = useCallback(
-    (e) => {
-      warningMsg.style.visibility = "hidden";
-      let reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-      if (reg.test(e.target.value) === true) {
-        setIsCorrect(true);
-        return;
-      } else {
-        setIsCorrect(false);
-      }
-    },
-    [warningMsg]
-  );
+  const [isVisible, setIsVisible] = useState(false);
+  const onChange = useCallback((e) => {
+    setIsVisible(false);
+    let reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if (reg.test(e.target.value) === true) {
+      setIsCorrect(true);
+      return;
+    } else {
+      setIsCorrect(false);
+    }
+  }, []);
   const onBlur = useCallback(() => {
     if (isCorrect === false) {
-      warningMsg.style.visibility = "visible";
+      setIsVisible(true);
     } else return;
-  }, [isCorrect, warningMsg]);
+  }, [isCorrect]);
   const onClick = useCallback(() => {
     setIsText(!isText);
   }, [isText]);
@@ -118,7 +115,12 @@ function Input() {
             color={isCorrect ? "#17a2b8" : "#d3cfcf"}
           />
         </button>
-        <p id="warningMsg">Invalid e-mail address.</p>
+        <p
+          id="warningMsg"
+          style={{ visibility: isVisible ? "visible" : "hidden" }}
+        >
+          Invalid e-mail address.
+        </p>
       </EmailInner>
       <PasswordInner>
         <label htmlFor="password">Password </label>
