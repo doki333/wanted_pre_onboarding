@@ -10,8 +10,8 @@ function App() {
     <div className="App">
       <Toggle />
       <Tab />
-      {/* <Slider /> */}
-      {/* <Input /> */}
+      <Slider />
+      <Input />
       <Dropdown />
     </div>
   );
