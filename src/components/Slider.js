@@ -131,6 +131,7 @@ const LabelBtn = styled.button`
       }
     `}
 `;
+const percentArr = [1, 25, 50, 75, 100];
 
 function Slider() {
   const [num, setNum] = useState(1);
@@ -138,10 +139,9 @@ function Slider() {
     setNum(e.target.value);
   }, []);
   const onSetValue = useCallback((e) => {
-    let number = e.target.innerText.replace("%", "");
+    const number = e.target.innerText.replace("%", "");
     setNum(number);
   }, []);
-  const percentArr = [1, 25, 50, 75, 100];
 
   return (
     <SliderWrapper>
@@ -160,7 +160,11 @@ function Slider() {
       <LabelList>
         {percentArr.map((p, index) => {
           return (
-            <LabelBtn key={p} onClick={onSetValue} color={num > p ? 1 : 0}>
+            <LabelBtn
+              key={`prev${index}`}
+              onClick={onSetValue}
+              color={num > p ? 1 : 0}
+            >
               {p}%
             </LabelBtn>
           );
