@@ -88,16 +88,25 @@ function Dropdown() {
   const onChange = useCallback((e) => {
     setSearch(e.target.value);
   }, []);
-  const onClick = useCallback(
-    (e) => {
-      setSymbol(e.target.innerText);
-      setIsVisible(!isVisible);
-    },
-    [isVisible]
-  );
+  const onClick = useCallback((e) => {
+    setSymbol(e.target.innerText);
+    setIsVisible((prev) => !prev);
+  }, []);
   const onClickDropDown = useCallback(() => {
-    setIsVisible(!isVisible);
-  }, [isVisible]);
+    setIsVisible((prev) => !prev);
+  }, []);
+  const onReturnFilteredArr = useCallback(() => {
+    const filteredArr = SymArr.filter((sym) =>
+      sym.toLowerCase().includes(search.toLowerCase())
+    );
+    return filteredArr.map((list, index) => {
+      return (
+        <li key={`list${index}`} onClick={onClick}>
+          {list}
+        </li>
+      );
+    });
+  }, [onClick, search]);
   return (
     <DropDownWrapper>
       <h3>DropDown</h3>
@@ -118,15 +127,7 @@ function Dropdown() {
         <ListWrapper>
           <input type="text" placeholder="Search Symbol" onChange={onChange} />
           <li onClick={onClick}>All Symbols</li>
-          {SymArr.filter((sym) =>
-            sym.toLowerCase().includes(search.toLowerCase())
-          ).map((a, index) => {
-            return (
-              <li key={index} onClick={onClick}>
-                {a}
-              </li>
-            );
-          })}
+          {onReturnFilteredArr()}
         </ListWrapper>
       </DropDownList>
     </DropDownWrapper>
