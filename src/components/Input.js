@@ -81,22 +81,21 @@ function Input() {
   const [isVisible, setIsVisible] = useState(false);
   const onChange = useCallback((e) => {
     setIsVisible(false);
-    let reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (reg.test(e.target.value) === true) {
       setIsCorrect(true);
       return;
-    } else {
-      setIsCorrect(false);
     }
+    setIsCorrect(false);
   }, []);
   const onBlur = useCallback(() => {
-    if (isCorrect === false) {
+    if (!isCorrect) {
       setIsVisible(true);
     } else return;
   }, [isCorrect]);
   const onClick = useCallback(() => {
-    setIsText(!isText);
-  }, [isText]);
+    setIsText((isText) => !isText);
+  }, []);
   return (
     <InputWrapper>
       <h3>Input</h3>
