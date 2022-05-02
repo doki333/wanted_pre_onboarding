@@ -59,8 +59,8 @@ const ToggleElement = styled.label`
 function Toggle() {
   const [check, setCheck] = useState(true);
   const onCheckChange = useCallback(() => {
-    setCheck(!check);
-  }, [check]);
+    setCheck((prev) => !prev);
+  }, []);
   return (
     <ToggleWrapper>
       <h3>Toggle</h3>
