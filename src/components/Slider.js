@@ -139,7 +139,7 @@ function Slider() {
     setNum(e.target.value);
   }, []);
   const onSetValue = useCallback((e) => {
-    const number = e.target.innerText.replace("%", "");
+    const number = e.target.dataset.value;
     setNum(number);
   }, []);
 
@@ -163,7 +163,9 @@ function Slider() {
             <LabelBtn
               key={`prev${index}`}
               onClick={onSetValue}
+              data-value={p}
               color={num > p ? 1 : 0}
+              id="numBtn"
             >
               {p}%
             </LabelBtn>
