@@ -79,8 +79,11 @@ function Input() {
   const [isText, setIsText] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const onChange = useCallback((e) => {
+  const [value, setValue] = useState({ email: "", password: "" });
+
+  const onChangeEmail = useCallback((e) => {
     setIsVisible(false);
+    setValue((prev) => ({ ...prev, email: e.target.value }));
     const reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (reg.test(e.target.value) === true) {
       setIsCorrect(true);
@@ -88,55 +91,71 @@ function Input() {
     }
     setIsCorrect(false);
   }, []);
+
+  const onChangePassword = (e) => {
+    setValue((prev) => ({ ...prev, password: e.target.value }));
+  };
+
+  const preventSubmit = (e) => {
+    e.preventDefault();
+  };
+
   const onBlur = useCallback(() => {
     if (!isCorrect) {
       setIsVisible(true);
     } else return;
   }, [isCorrect]);
+
   const onClick = useCallback(() => {
     setIsText((isText) => !isText);
   }, []);
+
   return (
     <InputWrapper>
       <h3>Input</h3>
-      <EmailInner>
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="email"
-          onChange={onChange}
-          id="email"
-          placeholder="E-mail"
-          onBlur={onBlur}
-        />
-        <button>
-          <FaCheckCircle
-            size="1rem"
-            color={isCorrect ? "#17a2b8" : "#d3cfcf"}
+      <form onSubmit={preventSubmit}>
+        <EmailInner>
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="email"
+            onChange={onChangeEmail}
+            id="email"
+            placeholder="E-mail"
+            onBlur={onBlur}
+            value={value.email}
           />
-        </button>
-        <p
-          id="warningMsg"
-          style={{ visibility: isVisible ? "visible" : "hidden" }}
-        >
-          Invalid e-mail address.
-        </p>
-      </EmailInner>
-      <PasswordInner>
-        <label htmlFor="password">Password </label>
-        <input
-          type={isText ? "text" : "password"}
-          id="password"
-          autoComplete="false"
-          placeholder="Password"
-        />
-        <button onClick={onClick}>
-          {isText ? (
-            <FaEye size="1.3rem" color="#18a2b8" />
-          ) : (
-            <FaEyeSlash size="1.3rem" color="#d3cfcf" />
-          )}
-        </button>
-      </PasswordInner>
+          <button>
+            <FaCheckCircle
+              size="1rem"
+              color={isCorrect ? "#17a2b8" : "#d3cfcf"}
+            />
+          </button>
+          <p
+            id="warningMsg"
+            style={{ visibility: isVisible ? "visible" : "hidden" }}
+          >
+            Invalid e-mail address.
+          </p>
+        </EmailInner>
+        <PasswordInner>
+          <label htmlFor="password">Password </label>
+          <input
+            type={isText ? "text" : "password"}
+            id="password"
+            onChange={onChangePassword}
+            autoComplete="false"
+            placeholder="Password"
+            value={value.password}
+          />
+          <button onClick={onClick}>
+            {isText ? (
+              <FaEye size="1.3rem" color="#18a2b8" />
+            ) : (
+              <FaEyeSlash size="1.3rem" color="#d3cfcf" />
+            )}
+          </button>
+        </PasswordInner>
+      </form>
     </InputWrapper>
   );
 }
