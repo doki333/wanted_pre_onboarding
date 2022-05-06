@@ -1,3 +1,121 @@
+@use '../styles/mixins/position';
+@use '../styles/constants/colors' as colors;
+
 .inputWrapper {
   margin: 2rem 0;
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+
+  .formInner {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+
+    label {
+      // @include position.absolute(0  0 0);
+      display: block;
+      padding-bottom: 0.5rem;
+      font-size: 16px;
+      text-align: left;
+      transform: translateX(0%);
+    }
+
+    .emailBlock {
+      input[type='email'] {
+        position: relative;
+        width: 400px;
+        padding: 0.5rem 0.7rem;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        background: colors.$TAB_BG;
+        border: none;
+        border-radius: 3px;
+        outline: none;
+        outline: 1px solid colors.$GRAYA;
+
+        &:focus {
+          outline: none;
+          outline: 2px solid colors.$GRAYA;
+        }
+
+        &::placeholder {
+          color: colors.$LIGHTGRAY;
+        }
+      }
+
+      button {
+        position: absolute;
+        pointer-events: none;
+        transition: 0.2s all;
+        transform: translate(-30px, 8px);
+
+        &.isCorrect {
+          color: colors.$TAB_POINT;
+        }
+
+        &.isNotCorrect {
+          color: colors.$LIGHTGRAY;
+        }
+      }
+
+      p {
+        color: colors.$RED;
+        text-align: left;
+        visibility: hidden;
+
+        &.isVisible {
+          visibility: visible;
+        }
+
+        &.isNotVisible {
+          visibility: hidden;
+        }
+      }
+    }
+
+    .passwordBlock {
+      margin-top: 25px;
+
+      input {
+        position: relative;
+        width: 400px;
+        padding: 0.5rem 0.7rem;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        background: colors.$TAB_BG;
+        border: none;
+        border-radius: 3px;
+        outline: none;
+        outline: 1px solid colors.$GRAYA;
+
+        &:focus {
+          outline: none;
+          outline: 2px solid colors.$GRAYA;
+        }
+
+        &::placeholder {
+          color: colors.$LIGHTGRAY;
+        }
+      }
+
+      button {
+        position: absolute;
+        transition: 0.2s all;
+        transform: translate(-30px, 8px);
+
+        &.isText {
+          color: colors.$TAB_POINT;
+        }
+
+        &.isPassword {
+          color: colors.$LIGHTGRAY;
+        }
+      }
+    }
+  }
 }
