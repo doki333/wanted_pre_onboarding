@@ -1,0 +1,49 @@
+@use '../styles/constants/colors' as colors;
+@use '../styles/mixins/flexbox';
+@use '../styles/mixins/animation';
+
+.toggleWrapper {
+  width: 430px;
+  margin: 0 auto;
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+
+  .toggleInner {
+    @include flexbox.flexbox('around', 'center');
+    width: 430px;
+    height: 50px;
+    padding: 10px 0;
+    background: colors.$GRAYE;
+    border-radius: 32px;
+
+    span {
+      position: absolute;
+      z-index: 10;
+      width: 210px;
+      height: 40px;
+      background: colors.$WHITE;
+      border-radius: 32px;
+      transform: translate(-50%, 0%);
+      @include animation.cubicBezier(0.3s);
+    }
+
+    .isMoved {
+      transform: translate(50%, 0%);
+    }
+
+    label {
+      z-index: 11;
+      width: 210px;
+      padding: 1rem;
+      color: colors.$GRAYA;
+
+      &.isBlack {
+        z-index: 11;
+        color: colors.$BLACK;
+      }
+    }
+  }
+}
