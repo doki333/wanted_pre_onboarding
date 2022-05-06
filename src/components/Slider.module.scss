@@ -1,0 +1,129 @@
+@use '../styles/constants/colors' as colors;
+@use '../styles/mixins/flexbox';
+@use '../styles/constants/levels' as idx;
+
+.sliderWrapper {
+  position: relative;
+  width: 600px;
+  height: 200px;
+  margin: 2rem auto;
+
+  h3 {
+    margin: 2rem 0;
+    font-size: 32px;
+  }
+
+  .textInputInner {
+    input[type='text'] {
+      position: relative;
+      width: 400px;
+      height: 30px;
+      padding: 25px;
+      padding-right: 60px;
+      margin: 0 auto;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 30px;
+      text-align: right;
+      background: colors.$TAB_BG;
+      border: none;
+      border: 2px solid colors.$GRAYA;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .percentLabel {
+      position: relative;
+      left: -36px;
+      height: 30px;
+      font-size: 14px;
+      line-height: 30px;
+      color: colors.$GRAYA;
+    }
+  }
+
+  .rangeBlock {
+    position: absolute;
+    width: 380px;
+    height: 8px;
+    margin-top: 20px;
+    border-radius: 20px;
+    transform: translateX(-50%);
+
+    input[type='range'] {
+      display: block;
+      width: 380px;
+      margin: 0 auto;
+      appearance: none;
+      margin-top: 4px;
+      border-radius: 20px;
+
+      &::-webkit-slider-thumb {
+        z-index: idx.$TOP;
+        width: 20px;
+        height: 20px;
+        margin-top: -12px;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        background: colors.$TAB_POINT;
+        border-radius: 50%;
+        outline: 5px solid colors.$WHITE;
+        box-shadow: 0 5px 5px colors.$GRAY6;
+      }
+    }
+
+    .numList {
+      @include flexbox.flexbox('between', 'center');
+      width: 380px;
+      margin-top: 20px;
+
+      .numBtn {
+        width: 45px;
+        padding: 5px;
+        margin-right: -2%;
+        margin-left: -3%;
+        color: colors.$GRAYA;
+        background: colors.$TAB_BG;
+        border-radius: 25px;
+
+        &:first-child {
+          span {
+            transform: translateX(-22px);
+          }
+        }
+
+        &:last-child {
+          span {
+            transform: translateX(-18px);
+          }
+        }
+
+        span {
+          position: absolute;
+          top: -6px;
+          z-index: idx.$BOTTOM;
+          width: 18px;
+          height: 18px;
+          pointer-events: none;
+          content: '';
+          border-radius: 50%;
+          transform: translateX(-22px);
+
+          &.isColored {
+            background: colors.$TAB_POINT;
+          }
+
+          &.isNotColored {
+            background: colors.$TAB_BG;
+          }
+        }
+
+        &:hover {
+          color: colors.$WHITE;
+          background: colors.$TAB_POINT;
+        }
+      }
+    }
+  }
+}
