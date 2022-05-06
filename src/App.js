@@ -1,20 +1,20 @@
-import "./App.css";
-import Dropdown from "./components/Dropdown";
-import Input from "./components/Input";
-import Slider from "./components/Slider";
-import Tab from "./components/Tab";
-import Toggle from "./components/Toggle";
+import { LogoImage } from './assets/svgs'
+import './App.scss'
 
 function App() {
   return (
-    <div className="App">
-      <Toggle />
-      <Tab />
-      <Slider />
-      <Input />
-      <Dropdown />
+    <div className='app'>
+      <header className='appHeader'>
+        <LogoImage className='appLogo' alt='logo' />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a className='appLink' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
+          Learn React
+        </a>
+      </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
