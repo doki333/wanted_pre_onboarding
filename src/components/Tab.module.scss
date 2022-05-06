@@ -1,0 +1,44 @@
+@use '/src/styles/constants/colors' as colors;
+@use '/src/styles/constants/levels' as idx;
+@use '/src/styles/mixins/animation';
+
+.tabWrapper {
+  width: 630px;
+  margin: 2rem auto;
+
+  h3 {
+    margin: 2rem 0;
+    font-size: 32px;
+  }
+
+  .tabList {
+    position: relative;
+    z-index: idx.$TOP;
+    width: 630px;
+    height: 62px;
+    margin: 0 10px;
+    background: colors.$LIGHTGRAY;
+
+    .tabItem {
+      z-index: idx.$MIDDLE;
+      width: 210px;
+      min-width: 210px;
+      height: 60px;
+      font-size: 18px;
+      font-weight: 600;
+      background: colors.$TAB_BG;
+    }
+
+    .movingBar {
+      position: absolute;
+      top: 52px;
+      left: 34%;
+      z-index: idx.$BOTTOM;
+      width: 200px;
+      height: 10px;
+      content: '';
+      background-color: colors.$TAB_POINT;
+      transition: 0.2s all ease;
+    }
+  }
+}

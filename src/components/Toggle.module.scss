@@ -4,7 +4,7 @@
 
 .toggleWrapper {
   width: 430px;
-  margin: 0 auto;
+  margin: 2rem auto;
 
   h3 {
     margin-bottom: 30px;
@@ -16,6 +16,8 @@
     width: 430px;
     height: 50px;
     padding: 10px 0;
+    font-size: 16px;
+    font-weight: 600;
     background: colors.$GRAYE;
     border-radius: 32px;
 
