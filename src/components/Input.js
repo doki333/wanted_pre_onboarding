@@ -16,22 +16,20 @@ export default function Input() {
   }
 
   const handleChangePassword = (e) => {
-    setValue((prev) => ({ ...prev, password: e.target.value }))
-    // currentTarget을 썼더니 value를 못가져오네요..이유가 뭘까요?ㅠㅠ
+    const newValue = e.currentTarget.value
+    setValue((prev) => ({ ...prev, password: newValue }))
   }
 
   const handleEmailCorrect = useCallback((e) => {
+    const newValue = e.currentTarget.value
     setIsVisible(false)
-    if (e.target.value === '') setIsVisible(false)
-    else {
-      setValue((prev) => ({ ...prev, email: e.target.value }))
-      const reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+    setValue((prev) => ({ ...prev, email: newValue }))
+    const reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 
-      if (reg.test(e.target.value) === true) {
-        setIsEmailCorrect(true)
-      } else {
-        setIsEmailCorrect(false)
-      }
+    if (reg.test(newValue) === true) {
+      setIsEmailCorrect(true)
+    } else {
+      setIsEmailCorrect(false)
     }
   }, [])
 
@@ -40,7 +38,7 @@ export default function Input() {
       setIsVisible(true)
     }
   }
-  console.log(isVisible)
+
   return (
     <section className={styles.inputWrapper}>
       <h3>Input</h3>
