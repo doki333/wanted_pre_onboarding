@@ -26,13 +26,18 @@
       height: 60px;
       font-size: 18px;
       font-weight: 600;
+      color: colors.$GRAYD;
       background: colors.$TAB_BG;
+
+      &.tabActiveItem {
+        color: colors.$BLACK;
+      }
     }
 
     .movingBar {
       position: absolute;
       top: 52px;
-      left: 34%;
+      left: 2%;
       z-index: idx.$BOTTOM;
       width: 200px;
       height: 10px;

@@ -1,6 +1,5 @@
 @use '../styles/constants/colors' as colors;
 @use '../styles/mixins/flexbox';
-@use '../styles/mixins/animation';
 
 .toggleWrapper {
   width: 430px;
@@ -13,8 +12,8 @@
 
   .toggleInner {
     @include flexbox.flexbox('around', 'center');
-    width: 430px;
-    height: 50px;
+    width: 425px;
+    height: 45px;
     padding: 10px 0;
     font-size: 16px;
     font-weight: 600;
@@ -25,11 +24,11 @@
       position: absolute;
       z-index: 10;
       width: 210px;
-      height: 40px;
+      height: 41px;
       background: colors.$WHITE;
       border-radius: 32px;
+      transition: 0.2s all;
       transform: translate(-50%, 0%);
-      @include animation.cubicBezier(0.3s);
     }
 
     .isMoved {

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import styles from './Input.module.scss'
 import { IoMdEye, IoMdEyeOff, IoMdCheckmarkCircle } from 'react-icons/io'
 
@@ -36,6 +36,9 @@ export default function Input() {
   const handleBlur = () => {
     if (!isEmailCorrect) {
       setIsVisible(true)
+    }
+    if (value.email === '') {
+      setIsVisible(false)
     }
   }
 
