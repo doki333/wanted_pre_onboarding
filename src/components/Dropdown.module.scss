@@ -1,0 +1,82 @@
+@use '../styles/mixins/position';
+@use '../styles/constants/colors' as colors;
+
+.dropdownWrapper {
+  height: 600px;
+  margin: 2rem 0;
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+
+  .dropdownInner {
+    width: 300px;
+    margin: 0 auto;
+    // background: colors.$RED;
+
+    .dropBtn {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      padding: 0 15px;
+      line-height: 40px;
+      text-align: left;
+      cursor: pointer;
+      border: 1px solid colors.$GRAYA;
+      border-radius: 5px;
+      outline: none;
+
+      &::after {
+        @include position.absolute(0 15px auto auto);
+        font-size: 10px;
+        content: '▼';
+      }
+    }
+
+    .inputAndList {
+      margin-top: 15px;
+      border: 1px solid colors.$GRAYA;
+      border-radius: 5px;
+      box-shadow: rgba(colors.$GRAY3, 0.2) 0 13px 24px;
+
+      .textInput {
+        border-bottom: 1px solid colors.$GRAYA;
+
+        svg {
+          position: absolute;
+          color: colors.$GRAYA;
+          transform: translate(10px, 10px);
+        }
+
+        input[type='text'] {
+          position: relative;
+          width: 300px;
+          padding: 10px 20px;
+          padding-left: 30px;
+          font-size: 14px;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.listItem {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 14px;
+  text-align: left;
+
+  & + & {
+    border-top: 1px solid colors.$GRAYA;
+  }
+
+  &:hover {
+    background: colors.$TAB_BG;
+  }
+}
