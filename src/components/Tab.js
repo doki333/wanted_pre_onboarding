@@ -22,19 +22,17 @@ export default function Tab() {
       <h3>Tab</h3>
       <ul className={styles.tabList}>
         <span className={styles.movingBar} ref={moveRef} />
-        {list.map(({ position, content }) => {
-          return (
-            <button
-              type='button'
-              key={`food-${content}`}
-              data-position={position}
-              className={cx(styles.tabItem, { [styles.tabActiveItem]: currentLoc === position })}
-              onClick={onClick}
-            >
-              {content}
-            </button>
-          )
-        })}
+        {list.map(({ position, content }) => (
+          <button
+            type='button'
+            key={`food-${content}`}
+            data-position={position}
+            className={cx(styles.tabItem, { [styles.tabActiveItem]: currentLoc === position })}
+            onClick={onClick}
+          >
+            {content}
+          </button>
+        ))}
       </ul>
     </section>
   )
